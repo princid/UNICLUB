@@ -1,14 +1,14 @@
-
-// import { Link } from "@nextui-org/react";
 import React from "react";
 import {useContext, useState} from "react";
+import { message } from "antd";
+
 import "./Login.css";
 import {loginAdmin} from "../api";
 import UserContext from "../UserContext";
 import {Navigate} from "react-router-dom";
 import {useNavigate} from "react-router";
 
-export const AdminLoginBody = () => {
+export const AdminLoginBody = ({ callback }) => {
   const { user } = useContext(UserContext);
 
   const [email, setEmail] = useState('');
@@ -22,9 +22,13 @@ export const AdminLoginBody = () => {
     formDetails.append('password', password);
     loginAdmin(formDetails).then((res) => {
       if(res.status === 200) {
-        navigate('/')
+        callback()
+        message.success(res.data.message)
+        navigate('/adminpanel')
       }
-    }).catch(console.log);
+    }).catch((err) => {
+      message.error(err?.response?.data?.message || 'Something went wrong!');
+    });
   }
 
   if(user.isAuth) {
@@ -34,7 +38,7 @@ export const AdminLoginBody = () => {
 
   return (
     <div className="Login__form">
-      <h2>Admin Login</h2>
+      <h2>ADMIN LOGIN</h2>
       <div className="container" id="container">
         <div className="form-container sign-in-container">
           <div className="form">
@@ -49,7 +53,7 @@ export const AdminLoginBody = () => {
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-right">
-              <h1>Hey, there!</h1>
+              <h1 className="hey">Hey, there!</h1>
               <p>To login as President, Click below.</p>
               <a href="/presidentlogin">
                 <button
