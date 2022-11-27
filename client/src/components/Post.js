@@ -1,12 +1,18 @@
-import { Avatar } from '@nextui-org/react'
-import React from 'react'
-import './Post.css'
-import {deleteEvent} from "../api";
+import { Avatar } from "@nextui-org/react";
+import React from "react";
+import "./Post.css";
+import { deleteEvent } from "../api";
+import { message } from "antd";
 
-const Post = ({id, profilePic, imageURL, username, timestamp, message, isPresident}) => {
+const Post = ({ id, profilePic, imageURL, username, timestamp, title, isPresident, callback }) => {
   const handleDeletePost = () => {
-    deleteEvent(id).then(console.log).catch(console.log);
-  }
+    deleteEvent(id).then((res) => {
+      message.success(res.data.message);
+      callback();
+    }).catch((err) => {
+      message.error(err.response.data.message);
+    });
+  };
 
   return (
     <div className="post">
@@ -28,13 +34,12 @@ const Post = ({id, profilePic, imageURL, username, timestamp, message, isPreside
         </div>
 
         <div className="post__bottom">
-          <p>{message}</p>
-          {/* image section */}
+          <p>{title}</p>
         </div>
-        <img src={imageURL} alt={message} className="post__image" />
+        <img src={imageURL} alt={title} className="post__image" />
       </div>
     </div>
   );
-}
+};
 
-export default Post
+export default Post;
