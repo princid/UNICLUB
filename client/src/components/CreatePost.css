@@ -14,6 +14,10 @@
     padding: 15px;
 }
 
+.avatar{
+    margin-top: 10px;
+}
+
 .createPost__top>form{
     display: flex;
     flex: 1;
