@@ -21,8 +21,14 @@
 	margin: 15px;
 }
 
+.hey{
+	color: #fff;
+}
+
 h2 {
+	font-size: 1.8em;
 	text-align: center;
+	font-weight: bold;
 }
 
 p {
