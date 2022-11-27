@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {Outlet, Route, Routes} from "react-router";
+import React, { useEffect, useState } from 'react';
+import { Outlet, Route, Routes } from "react-router";
 import { Navigate } from 'react-router-dom';
 import { useContext } from "react";
+import "antd/dist/antd.css";
 // import * as React from "react";
 // 1. import `NextUIProvider` component
 // import { NextUIProvider } from "@nextui-org/react";
@@ -18,16 +19,18 @@ import AdminPanel from "./Pages/AdminPanel";
 import Club from "./Pages/Club";
 import StudentMail from "./Pages/StudentMail";
 import UserContext from './UserContext';
-// import UserContext from './UserContext';
+import { fetUserData } from "./api";
 
 
-function App({Component}) {
-  const [user, setUser] = useState({isLoading: true});
+function App({ Component }) {
+  const [ user, setUser ] = useState({ isLoading: true });
+
+  const fetchActiveUserData = () => {
+    fetUserData().then((res) => setUser({ ...res.data, isLoading: false }));
+  }
 
   useEffect(() => {
-    fetch('/api/user/self')
-      .then((res) => res.json())
-      .then((res) => setUser({...res, isLoading: false}));
+    fetchActiveUserData();
   }, []);
 
   // const [variant] = React.useState("floating");
@@ -50,21 +53,21 @@ function App({Component}) {
 
     <UserContext.Provider value={{ user, setUser }}>
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/presidentlogin" element={<PresidentLogin/>}/>
-        <Route path="/adminlogin" element={<AdminLogin/>}/>
+        <Route path="/" element={<Home callback={fetchActiveUserData}/>}/>
+        <Route path="/presidentlogin" element={<PresidentLogin callback={fetchActiveUserData}/>}/>
+        <Route path="/adminlogin" element={<AdminLogin callback={fetchActiveUserData}/>}/>
         <Route element={<AdminLayout/>}>
-          <Route path="/adminpanel" element={<AdminPanel/>} />
+          <Route path="/adminpanel" element={<AdminPanel callback={fetchActiveUserData}/>} />
         </Route>
-        <Route path="/codingclub" element={<Club id="codingclub" displayName="CODING CLUB"/>}/>
-        <Route path="/sportsclub" element={<Club id="sportsclub" displayName="SPORTS CLUB"/>}/>
-        <Route path="/culturalclub" element={<Club id="culturalclub" displayName="CULTURAL CLUB"/>}/>
-        <Route path="/personalityclub" element={<Club id="personalityclub" displayName="PERSONALITY CLUB"/>}/>
-        <Route path="/editorialclub" element={<Club id="editorialclub" displayName="EDITORIAL CLUB"/>}/>
-        <Route path="/facultyclub" element={<Club id="facultyclub" displayName="FACULTY CLUB"/>}/>
-        <Route path="/ecell" element={<Club id="ecell" displayName="E-CELL"/>}/>
-        <Route path="/tpcell" element={<Club id="tpcell" displayName="T&P-CELL"/>}/>
-        <Route path="/studentmail" element={<StudentMail/>}/>
+        <Route path="/codingclub" element={<Club id="codingclub" displayName="CODING CLUB" callback={fetchActiveUserData}/>}/>
+        <Route path="/sportsclub" element={<Club id="sportsclub" displayName="SPORTS CLUB" callback={fetchActiveUserData}/>}/>
+        <Route path="/culturalclub" element={<Club id="culturalclub" displayName="CULTURAL CLUB" callback={fetchActiveUserData}/>}/>
+        <Route path="/personalityclub" element={<Club id="personalityclub" displayName="PERSONALITY CLUB" callback={fetchActiveUserData}/>}/>
+        <Route path="/editorialclub" element={<Club id="editorialclub" displayName="EDITORIAL CLUB" callback={fetchActiveUserData}/>}/>
+        <Route path="/facultyclub" element={<Club id="facultyclub" displayName="FACULTY CLUB" callback={fetchActiveUserData}/>}/>
+        <Route path="/ecell" element={<Club id="ecell" displayName="E-CELL" callback={fetchActiveUserData}/>}/>
+        <Route path="/tpcell" element={<Club id="tpcell" displayName="T&P-CELL" callback={fetchActiveUserData}/>}/>
+        <Route path="/studentmail" element={<StudentMail callback={fetchActiveUserData}/>}/>
       </Routes>
     </UserContext.Provider>
 
