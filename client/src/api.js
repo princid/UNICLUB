@@ -40,6 +40,22 @@ export const loginPresident = (body) => {
   });
 };
 
+export const logoutAdmin = (body) => {
+  return new Promise((resolve, reject) => {
+    axios.post('/api/admin/logout', body)
+      .then((data) => resolve(data))
+      .catch((err) => reject(err))
+  });
+};
+
+export const logoutPresident = (body) => {
+  return new Promise((resolve, reject) => {
+    axios.post('/api/president/logout', body)
+      .then((data) => resolve(data))
+      .catch((err) => reject(err))
+  });
+};
+
 export const assignPresident = (body) => {
   return new Promise((resolve, reject) => {
     axios.post('/api/president', body)
@@ -59,6 +75,14 @@ export const getAllPresidents = () => {
 export const deleteEvent = (eventId) => {
   return new Promise((resolve, reject) => {
     axios.delete(`/api/event/${eventId}`)
+      .then((data) => resolve(data))
+      .catch((err) => reject(err))
+  });
+};
+
+export const fetUserData = () => {
+  return new Promise((resolve, reject) => {
+    axios.get('/api/user/self')
       .then((data) => resolve(data))
       .catch((err) => reject(err))
   });
