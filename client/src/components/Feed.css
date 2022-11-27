@@ -2,12 +2,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .create-post {
   width: 80%;
 }
 
+.posts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-self: center;
+  justify-content: space-between;
+  width: 80%;
+}
 
 
 /* @media only screen and (max-width:400px) {
