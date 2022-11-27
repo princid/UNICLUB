@@ -1,13 +1,14 @@
-import {Avatar, Button, Dropdown, Link, Navbar, Text} from '@nextui-org/react';
-import React, {useContext} from 'react'
-import { UniClubLogo } from '../components/UniClubLogo';
-import { Layout } from '../components/Layout';
+import { Button, Link, Navbar, Text } from "@nextui-org/react";
+import React, { useContext } from "react";
+import { UniClubLogo } from "../components/UniClubLogo";
+import { Layout } from "../components/Layout";
 import UserContext from "../UserContext";
+import NavbarAvatar from "../components/NavbarAvatar";
 
-const Home = () => {
+const Home = ({ callback }) => {
   const { user } = useContext(UserContext);
 
-  const isAdmin = user.isAuth && user.type === 'admin';
+  const isAdmin = user.isAuth && user.type === "admin";
 
   return (
     <Layout>
@@ -40,59 +41,32 @@ const Home = () => {
           </Navbar.Link>
         </Navbar.Content>
         <Navbar.Content>
-          {isAdmin && <Navbar.Item>
-            <Link href="/adminpanel">
-              <Button auto bordered color="success">
-                Admin Panel
-              </Button>
-            </Link>
-          </Navbar.Item>}
-          {user.isAuth
-            ? (
-              <Navbar.Item>
-                <Dropdown placement="bottom-left">
-                  <Dropdown.Trigger>
-                    <Avatar
-                      bordered
-                      size="lg"
-                      as="button"
-                      color="gradient"
-                      src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"
-                    />
-                  </Dropdown.Trigger>
-                  <Dropdown.Menu color="secondary" aria-label="Avatar Actions">
-                    <Dropdown.Item key="profile" css={{ height: "$18" }}>
-                      <Text b color="inherit" css={{ d: "flex" }}>
-                        Signed in as
-                      </Text>
-                      <Text b color="inherit" css={{ d: "flex" }}>
-                        {user.name}
-                      </Text>
-                    </Dropdown.Item>
-                    <Dropdown.Item key="settings" withDivider>
-                      My Profile
-                    </Dropdown.Item>
-                    <Dropdown.Item key="logout" color="error" withDivider>
-                      Log Out
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </Navbar.Item>
-            )
-            : (
-              <Navbar.Item>
+          {isAdmin && (
+            <Navbar.Item>
+              <Link href="/adminpanel">
+                <Button auto bordered color="success">
+                  Admin Panel
+                </Button>
+              </Link>
+            </Navbar.Item>
+          )}
+          {user.isAuth ? (
+            <Navbar.Item>
+              <NavbarAvatar name={user.name} type={user.type} callback={callback}/>
+            </Navbar.Item>
+          ) : (
+            <Navbar.Item>
               <Link href="/presidentlogin">
-                <Button className='home__login' auto bordered color="success">
+                <Button className="home__login" auto bordered color="success">
                   Login
                 </Button>
               </Link>
             </Navbar.Item>
-            )
-          }
+          )}
         </Navbar.Content>
       </Navbar>
     </Layout>
   );
-}
+};
 
-export default Home
+export default Home;
