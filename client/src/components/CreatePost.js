@@ -1,12 +1,12 @@
 import { Avatar, Button } from "@nextui-org/react";
 import React, {useState} from "react";
+import { message } from "antd";
 import "./CreatePost.css";
 import {postEvent} from "../api";
 
-const CreatePost = ({clubId}) => {
+const CreatePost = ({ clubId, callback }) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState({});
-  // const [setImage] = useState(null);
 
   const handleChange = (e) => {
     if(e.target.files[0]) {
@@ -19,14 +19,20 @@ const CreatePost = ({clubId}) => {
     formDetails.append('title', title)
     formDetails.append('club', clubId)
     formDetails.append('image', image)
-    console.log(formDetails)
-    postEvent(formDetails).then(console.log).catch(console.log);
+    postEvent(formDetails)
+      .then((res) => {
+        message.success(res.data.message);
+        callback();
+      })
+      .catch((err) => {
+        message.error(err.response.data.message);
+      });
   }
 
   return (
     <div className="createPost">
       <div className="createPost__top">
-        <Avatar
+        <Avatar className="avatar"
           src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"
           size="lg"
         />
