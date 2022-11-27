@@ -22,7 +22,7 @@ presidentRouter.post('/login', async(req, res) => {
   const {email, password} = req.body;
   President.findOne({email})
     .then(data => {
-      if(data.password === password) {
+      if(data?.password === password) {
         const userData = {id: data._id, type: 'president', club: data.club, email: data.email, name: data.name}
         req.session.user = userData
         return res.json({message: 'Authenticated as a president successfully!', user: userData})
@@ -31,5 +31,10 @@ presidentRouter.post('/login', async(req, res) => {
     })
     .catch(err => res.status(500).json(err))
 });
+
+presidentRouter.post('/logout', async(req, res) => {
+  req.session.user = null;
+  res.json({message: 'Logged out successfully!'});
+})
 
 module.exports = presidentRouter;
