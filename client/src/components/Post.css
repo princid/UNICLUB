@@ -1,26 +1,29 @@
-body {
+
+body{
     background-color: #F3F2EF;
 }
 
 .post {
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   align-items:center ;
-  width: 1000px;
+  width: 700px;
+  /*margin: 10px;*/
 }
 
-.post__content {
+.post__content{
     display: flex;
     justify-content: center;
     margin-top: 30px;
     margin-bottom: 30px;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     flex-direction: column;
     background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 2px 5px 7px -5px rgba(0, 0, 0, 0.75);
-    width: 80%;
+    width: 100%;
+    
 }
 
 /* .post__image>img{
@@ -31,53 +34,52 @@ body {
     width: 100%;
 } */
 
-.post__top {
+.post__top{
     display: flex;
     position: relative;
     align-items: center;
     /* padding: 15px; */
     border-bottom: 1px solid #dfe0e0;
-    padding: 0 50px;
-    background: linear-gradient(to top, #864ba2, #000000);
+    padding: 0 25px;
+    background: linear-gradient(to top, #864BA2, #000000);
     /* background: linear-gradient(to top, #41b3ff, #000000); */
     border-radius: 15px 15px 0 0;
 }
 
-.post__avatar {
-    margin-right: 15px;
+.post__avatar{
+    margin-right: 10px;
 }
 
-.post__topInfo {
+.post__topInfo{
     font-size: medium;
     /* padding: 10px; */
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
-.post__topInfo > p {
+.post__topInfo>p{
     font-size: small;
     color: #c7c7c7;
     margin-top: -2px;
 }
 
-.post__topInfo > h4 {
+.post__topInfo>h4{
     font-size: medium;
     color: #ffffff;
     margin-bottom: 10px;
 }
 
-.post__bottom {
-    margin-top: 30px;
-    margin-bottom: 10px;
+.post__bottom{
+    margin-top: 20px;
     padding: 0 50px;
 }
 
 .post__image {
     height: auto;
-    width: 60%;
+    width: 80%;
     margin: 10px 50px 30px 50px;
 }
 
-.delete_btn {
+.delete_btn{
     position: absolute;
     right: 0;
     top: 0;
@@ -85,13 +87,14 @@ body {
     margin-top: 35px;
     border: 1px solid;
     /* background: linear-gradient(to right, #225531, #000000); */
-    background: #c21717;
+    background:#c21717;
     color: #ffffff;
     font-size: 10px;
     text-align: center;
     align-items: center;
     font-weight: bold;
     text-transform: uppercase;
+    box-shadow: 2px 7px 7px -5px rgba(0, 0, 0, 0.75);
 
     border-radius: 20px;
     padding: 12px 15px;
