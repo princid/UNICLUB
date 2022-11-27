@@ -46,20 +46,18 @@ const Administration = () => {
 
   const PresidentsTable = () => (
     <div className="table-content">
-      <h3>ASSIGNED PRESIDENT's CREDENTIAL</h3>
+      <h3 className="president__details">ASSIGNED PRESIDENT's CREDENTIAL</h3>
       <table className="president-table">
         <thead>
-        <tr>
-          <th scope="col">President's Name</th>
-          <th scope="col">President's Email</th>
-          <th scope="col">Assigned Club</th>
-          <th scope="col">Assigned Password</th>
-          <th scope="col">Action</th>
-        </tr>
+          <tr>
+            <th scope="col">President's Name</th>
+            <th scope="col">President's Email</th>
+            <th scope="col">Assigned Club</th>
+            <th scope="col">Assigned Password</th>
+            <th scope="col">Action</th>
+          </tr>
         </thead>
-        <tbody>
-        {presidentsRows}
-        </tbody>
+        <tbody>{presidentsRows}</tbody>
       </table>
     </div>
   );
@@ -74,7 +72,7 @@ const Administration = () => {
             </Text>
           </Link>
         </div>
-          <h3>ADD PRESIDENT's DETAIL</h3>
+          <h3 className="president__details">ADD PRESIDENT's DETAIL</h3>
           <div class="class4" id="contactForm">
             <div>
               <div>
