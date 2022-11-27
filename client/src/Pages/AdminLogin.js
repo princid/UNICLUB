@@ -3,7 +3,7 @@ import React from "react";
 import { UniClubLogo } from "../components/UniClubLogo";
 import { AdminLoginBody } from "../components/AdminLoginBody";
 
-const AdminLogin = () => {
+const AdminLogin = ({ callback }) => {
   return (
     <>
       <Navbar isBordered variant={"floating"}>
@@ -29,7 +29,7 @@ const AdminLogin = () => {
         </Navbar.Content> */}
       </Navbar>
 
-      <AdminLoginBody />
+      <AdminLoginBody callback={callback}/>
     </>
   );
 };
