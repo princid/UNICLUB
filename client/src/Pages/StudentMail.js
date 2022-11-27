@@ -1,9 +1,13 @@
-import { Avatar, Link, Navbar, Text, Dropdown } from "@nextui-org/react";
-import React from "react";
+import { Link, Navbar, Text } from "@nextui-org/react";
+import React, { useContext } from "react";
 import StudentMailPage from "../components/StudentMailPage";
 import { UniClubLogo } from "../components/UniClubLogo";
+import NavbarAvatar from "../components/NavbarAvatar";
+import UserContext from "../UserContext";
 
-const StudentMail = () => {
+const StudentMail = ({ callback }) => {
+  const { user } = useContext(UserContext);
+
   return (
     <>
       <Navbar isBordered variant={"floating"}>
@@ -34,33 +38,7 @@ const StudentMail = () => {
               </Link> */}
 
             {/* If Logged In then the Avatar of the President will be shown in the Navbar, Otherwise it will show the Login Button */}
-            <Dropdown placement="bottom-left">
-              <Dropdown.Trigger>
-                <Avatar
-                  bordered
-                  size="lg"
-                  as="button"
-                  color="gradient"
-                  src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"
-                />
-              </Dropdown.Trigger>
-              <Dropdown.Menu color="secondary" aria-label="Avatar Actions">
-                <Dropdown.Item key="profile" css={{ height: "$18" }}>
-                  <Text b color="inherit" css={{ d: "flex" }}>
-                    Signed in as
-                  </Text>
-                  <Text b color="inherit" css={{ d: "flex" }}>
-                    admin@example.com
-                  </Text>
-                </Dropdown.Item>
-                <Dropdown.Item key="settings" withDivider>
-                  My Profile
-                </Dropdown.Item>
-                <Dropdown.Item key="logout" color="error" withDivider>
-                  Log Out
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            <NavbarAvatar name={user.name} type={user.type} callback={callback}/>
           </Navbar.Item>
         </Navbar.Content>
       </Navbar>
