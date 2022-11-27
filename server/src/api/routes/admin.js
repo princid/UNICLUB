@@ -8,7 +8,7 @@ adminRouter.post('/login', async(req, res) => {
   const {email, password} = req.body;
   Admin.findOne({email})
     .then(data => {
-      if(data.password === password) {
+      if(data?.password === password) {
         const userData = {id: data._id, type: 'admin', email: data.email, name: data.name};
         req.session.user = userData
         return res.json({message: 'Authenticated as an admin successfully!', user: userData})
@@ -17,5 +17,10 @@ adminRouter.post('/login', async(req, res) => {
     })
     .catch(err => res.status(500).json(err))
 });
+
+adminRouter.post('/logout', async(req, res) => {
+  req.session.user = null;
+  res.json({message: 'Logged out successfully!'});
+})
 
 module.exports = adminRouter;
