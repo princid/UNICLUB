@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/server.js",
+    "start-dev": "nodemon src/server.js",
     "seed-data": "node src/db/migrations/seed/index.js"
   },
   "keywords": [],
@@ -18,6 +19,10 @@
     "express-fileupload": "^1.4.0",
     "mongoose": "^6.7.1",
     "morgan": "^1.10.0",
+    "path": "^0.12.7",
     "uniclub": "file:.."
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
