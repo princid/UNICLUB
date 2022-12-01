@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Text } from "@nextui-org/react";
 import { message } from "antd";
 
-import { assignPresident, getAllPresidents } from "../api";
+import { assignPresident, getAllPresidents, removePresident } from "../api";
 import "./Administration.css";
 
 const Administration = () => {
@@ -50,6 +50,17 @@ const Administration = () => {
       });
   };
 
+  const handleDelete = (presidentId) => {
+    removePresident(presidentId)
+      .then((res) => {
+        message.success(res.data.message);
+        fetchAllPresidents();
+      })
+      .catch((err) => {
+        message.error(err.response.data.message);
+      });
+  };
+
   const presidentsRows = presidents.map((president) => {
     return (
       <tr>
@@ -58,7 +69,12 @@ const Administration = () => {
         <td>{president.club}</td>
         <td>{president.password}</td>
         <td>
-          <button className="delete__btn">DELETE</button>
+          <button
+            className="delete__btn"
+            onClick={() => handleDelete(president._id)}
+          >
+            DELETE
+          </button>
         </td>
       </tr>
     );
