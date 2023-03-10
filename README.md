@@ -16,4 +16,9 @@
 PORT=<Port number>
 MONGO_DB_CONNECTION_STRING=<mongo db connection string with username and password>
 ```
->>>>>>> 05cf836775a6db602132c6ecf7c37a676a07a2b2
+#Glimpses of UniClub
+![image](https://user-images.githubusercontent.com/90444477/205420899-2bdf1f6a-cbde-4768-b43d-6400e79f29a9.png)
+
+![image](https://user-images.githubusercontent.com/90444477/205420953-bce45e51-e0a6-455c-a90e-865a31ae5209.png)
+
+![image](https://user-images.githubusercontent.com/90444477/205420976-5745bc2b-b170-4ecc-a4d2-a6ff5ef8eb23.png)
